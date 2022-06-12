@@ -253,10 +253,6 @@ app.post("/list-users-checkin",(req,res)=>{
                             {
                             name: "", 
                             time: ""
-                            },
-                            {
-                                name: "", 
-                                time: ""
                             }
                         ]
                             

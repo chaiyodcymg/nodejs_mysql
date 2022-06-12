@@ -275,5 +275,5 @@ app.post("/list-users-checkin",(req,res)=>{
 
 })
 app.listen(PORT,()=>{
-    console.log("Server running on Port http://localhost:"+PORT)
+    console.log("Server runningg on Port http://localhost:"+PORT)
 })

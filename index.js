@@ -156,7 +156,7 @@ app.post("/checkin",(req,res)=>{
 
     MongoClient.connect(url, async function(err, db) {
         if (err) throw err;
-
+     
         var dbo = db.db("mydb");
         if(req.headers['x-api-key'] != undefined && req.headers['x-api-key'].toString() == "813c33ee-d292-4060-884e-ec2897401990asd99sd"){
             const date_now = new Date(Date.now())
@@ -227,48 +227,50 @@ app.post("/checkin",(req,res)=>{
 app.post("/list-users-checkin",(req,res)=>{
 
     MongoClient.connect(url, async function(err, db) {
-        var dbo = db.db("mydb");
-        dbo.collection("time_checkin").find().toArray(function(err, result) {
-          if (err) throw err;
-          console.log(result);
-          let json = { date_day:[]}
-          if(result.length > 0 ){
-            result = result.reverse()
-            result.forEach(re => {
-                
-                json.date_day.push(re)
-            })
-            console.log(json)   
-                // json.date_day.push(re)
+       
+        if(req.headers['x-api-key'] != undefined){
+                    var dbo = db.db("mydb");
+                var myobj1 = {_id:req.headers['x-api-key']}
+                await   dbo.collection("users").find(myobj1).toArray(async function(err, result) {
+                    // console.log(result)
               
-          
-            res.status(200)
-            res.send( json)
-          }else{
-            let json2 = { 
-                date_day:[
-                    {
-                        date: "", 
-                        users:[
-                            {
-                            name: "", 
-                            time: ""
-                            }
-                        ]
-                            
-                        
-                    }
-                ]
-                
             
-            }
-            res.status(200)
-            res.send( json2)
-          }
-        
-          db.close();
-        });
-
+                    if(result.length > 0){
+                        dbo.collection("time_checkin").find().toArray(function(err, result) {
+                            if (err) throw err;
+                            console.log(result);
+                            let json = { date_day:[]}
+                            if(result.length > 0 ){
+                              result = result.reverse()
+                              result.forEach(re => {
+                                  
+                                  json.date_day.push(re)
+                              })
+                              console.log(json)   
+                                  // json.date_day.push(re)
+                              
+                          
+                              res.status(200)
+                              res.send( json)
+                            }else{
+                              let json2 = { date_day:[{date: "", users:[{name: "", time: ""}]}]}
+                              res.status(200)
+                              res.send( json2)
+                            }
+                          
+                            db.close();
+                          });
+                    }else{
+                        res.status(403)
+                        res.send({message:"Forbidden"})
+                    }
+            
+               
+            })
+        }else{
+            res.status(403)
+            res.send({message:"Forbidden"})
+        }
     })
     // res.send( json)
 // console.log(req.body.timestamp)

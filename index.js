@@ -20,57 +20,6 @@ app.use(session({
     secret:"secret"
 }))
 
-// let json = { 
-//     date_day:[
-//         {
-//             date: "11 มิ.ย. 2565", 
-//             users:[
-//                 {
-//                 name: "ไชยยศ มะลิงาม", 
-//                 time: "22:31"
-//                 },
-//                 {
-//                     name: "แมว เหมียว", 
-//                     time: "22:31"
-//                 }
-//             ]
-                
-            
-//         },
-//         {
-//             date: "12 มิ.ย. 2566", 
-//             users:[
-//                 {
-//                 name: "bana na", 
-//                 time: "22:31"
-//                 }
-//             ]
-                
-            
-//         }
-//     ]
-    
-
-// }
-
-
-
-
-
-
-// if(count == 0){
-//     count++
-//     MongoClient.connect(url, function(err, db) {
-//         if (err) throw err;
-//         var dbo = db.db("mydb");
-//         var myobj = { _id:uuidv4(),email: "A@gmail.com", password:md5("1234")};
-//         dbo.collection("users").insertOne(myobj, function(err, res) {
-//           if (err) throw err;
-//           console.log("1 document inserted");
-//           db.close();
-//         });
-//       });
-// }
 
 
 app.get("/",(req,res)=>{
@@ -85,7 +34,7 @@ app.get("/",(req,res)=>{
     //       db.close();
     //     });
     //   });
-    const date = new Date("2022-06-12T17:00:00.571Z")
+    const date = new Date(Date.now())
 
     const result = date.toLocaleDateString('th-TH', {year: 'numeric',month: "short",day: 'numeric',hour:"numeric",minute:"numeric"})
     // const result = date.toLocaleTimeString('th-TH',{hour:"numeric",minute:"numeric"})

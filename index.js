@@ -23,22 +23,12 @@ app.use(session({
 
 
 app.get("/",(req,res)=>{
-    // MongoClient.connect(url, function(err, db) {
-    //     if (err) throw err;
-    //     var dbo = db.db("mydb");
-    //     var myquery = { password: "1234"};
-    //     var newvalues = { $set: {password: md5("1234") } };
-    //     dbo.collection("users").updateOne(myquery, newvalues, function(err, res) {
-    //       if (err) throw err;
-    //       console.log("1 document updated");
-    //       db.close();
-    //     });
-    //   });
+  
     const date = new Date(Date.now())
 
-    const result = date.toLocaleDateString('th-TH', {year: 'numeric',month: "short",day: 'numeric',hour:"numeric",minute:"numeric"})
+    const result = date.toLocaleDateString('th-TH', {timeZone:"Asia/Bangkok", year: 'numeric',month: "short",day: 'numeric',hour:"numeric",minute:"numeric"})
     // const result = date.toLocaleTimeString('th-TH',{hour:"numeric",minute:"numeric"})
-    res.send(result)
+    res.sendFile('index.html', {root: __dirname })
 })
 
 app.post("/login",(req,res)=>{
@@ -164,8 +154,8 @@ app.post("/checkin",(req,res)=>{
             await   dbo.collection("users").find(myobj1).toArray(async function(err, result) {
                 if(result.length > 0){
                     const date_now = new Date(Date.now())
-                    const date = date_now.toLocaleDateString('th-TH', {year: 'numeric',month: "short",day: 'numeric'})
-                    const time = date_now.toLocaleTimeString('th-TH',{hour:"numeric",minute:"numeric"})
+                    const date = date_now.toLocaleDateString('th-TH', {timeZone:"Asia/Bangkok",year: 'numeric',month: "short",day: 'numeric'})
+                    const time = date_now.toLocaleTimeString('th-TH',{timeZone:"Asia/Bangkok",hour:"numeric",minute:"numeric"})
                   
                     var myobj1 = {date:date}
                await   dbo.collection("time_checkin").find(myobj1).toArray(async function(err, result) {

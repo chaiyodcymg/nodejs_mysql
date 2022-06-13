@@ -1,0 +1,8 @@
+stages:
+  - deploy
+deploy:
+  stages: deploy
+  script:
+    - npm i
+    - node index.js
+    - if [ "$CI_COMMIT_REF_NAME" == "master" ] cp -R dist/* /nodejs-app; fi;

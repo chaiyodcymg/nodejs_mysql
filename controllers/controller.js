@@ -8,6 +8,8 @@ const randomstring = require("randomstring");
 const sharp = require('sharp');
 const md5 = require('md5')
 const mysql = require('mysql')
+
+
 const connection = mysql.createConnection({
     host: 'localhost',
     user:'root',
@@ -24,15 +26,15 @@ connection.connect((err)=>{
 })
 
 
+
+
+
 exports.login = (req,res)=>{
 
     try {
-
-        
+  
     
        
-
-        // var query = { email: req.body.email,password: md5(md5(req.body.password))}  ;
         // await   dbo.collection("users").find(query).toArray( function(err, result) {
         //     if (err)  throw err;
 

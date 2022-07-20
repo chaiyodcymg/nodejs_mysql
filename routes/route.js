@@ -3,7 +3,8 @@ const router = express.Router()
 const controller = require("../controllers/controller")
 const path = require('path');
 const fs = require('fs');
-const root = require('../index')
+const root_dir = require('../index')
+
 
 
 router.use((req, res, next) => {
@@ -19,6 +20,12 @@ router.use((req, res, next) => {
   
   
 })
+
+
+
+
+
+
 router.get("/",(req,res)=>{
 
 //   var img =  fs.readFileSync ("/Users/chaiyot/Desktop/Codes/nodejs-mongodb/public/profile/19zCf7DrHUVx4cSfEh8QwCfTbJ4sb9br29kSZdTnytb78GuVPp.jpg");
@@ -30,7 +37,8 @@ router.get("/",(req,res)=>{
 //   });
 
 
-  res.send({a:root.root_dir})
+res.render('index.html', {root: __dirname })
+
 })
 router.post("/login", controller.login)
 router.post("/register",controller.register)

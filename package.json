@@ -19,9 +19,11 @@
     "express-session": "^1.17.3",
     "md5": "^2.3.0",
     "mysql": "^2.18.1",
+    "node-schedule": "^2.1.0",
     "nodemon": "^2.0.16",
     "randomstring": "^1.2.2",
     "sharp": "^0.30.6",
+    "socket.io": "^4.5.1",
     "uuid": "^8.3.2"
   }
 }
